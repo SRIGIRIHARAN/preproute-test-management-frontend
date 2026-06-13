@@ -11,7 +11,7 @@ import apiClient from '@/api/axios';
 import { testEndpoints } from '@/api/endpoints';
 import type { Test } from '@/types';
 import {
-  CREATE_TEST_PAGE_URL,
+  CREATE_TEST_CHAPTERWISE_URL,
   EDIT_TEST_PAGE_URL,
   PREVIEW_PUBLISH_PAGE_URL,
 } from '@/constants/routes';
@@ -233,7 +233,7 @@ export default function DashboardPage() {
 
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <h1 className="text-xl font-bold text-gray-900">All Tests</h1>
-          <AppButton onClick={() => navigate(CREATE_TEST_PAGE_URL)} className="shrink-0">
+          <AppButton onClick={() => navigate(CREATE_TEST_CHAPTERWISE_URL)} className="shrink-0">
             Create New Test
           </AppButton>
         </div>
@@ -249,7 +249,7 @@ export default function DashboardPage() {
             <p className="text-xs text-gray-400 mb-6 text-center">
               Start building MCQ-based tests for your students.
             </p>
-            <AppButton onClick={() => navigate(CREATE_TEST_PAGE_URL)}>Create New Test</AppButton>
+            <AppButton onClick={() => navigate(CREATE_TEST_CHAPTERWISE_URL)}>Create New Test</AppButton>
           </div>
         ) : (
           <AppTable

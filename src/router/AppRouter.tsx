@@ -7,6 +7,7 @@ import {
   LOGIN_PAGE_URL,
   DASHBOARD_PAGE_URL,
   CREATE_TEST_PAGE_URL,
+  CREATE_TEST_CHAPTERWISE_URL,
 } from "../constants/routes";
 
 const LoginPage = lazy(() => import("../pages/Login/LoginPage"));
@@ -43,8 +44,12 @@ export default function AppRouter() {
             }
           >
             <Route path={DASHBOARD_PAGE_URL} element={<DashboardPage />} />
-            <Route path={CREATE_TEST_PAGE_URL} element={<CreateTestPage />} />
-            <Route path="/tests/:id/edit" element={<CreateTestPage />} />
+            <Route
+              path={CREATE_TEST_PAGE_URL}
+              element={<Navigate to={CREATE_TEST_CHAPTERWISE_URL} replace />}
+            />
+            <Route path="/tests/create/:testType" element={<CreateTestPage />} />
+            <Route path="/tests/:id/edit/:testType" element={<CreateTestPage />} />
             <Route path="/tests/:id/questions" element={<AddQuestionsPage />} />
             <Route path="/tests/:id/preview" element={<PreviewPublishPage />} />
           </Route>
