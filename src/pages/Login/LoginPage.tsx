@@ -24,6 +24,11 @@ type LoginForm = z.infer<typeof schema>;
 interface LoginResponse {
   data: {
     token: string;
+    user: {
+      userId: string;
+      name: string;
+      role: string;
+    };
   };
 }
 
@@ -48,8 +53,8 @@ export default function LoginPage() {
         userId: data.userId,
         password: data.password,
       });
-      const token = res.data.data.token;
-      setAuth(token, { userId: data.userId });
+      const { token, user } = res.data.data;
+      setAuth(token, { userId: user.userId, name: user.name, role: user.role });
       navigate(DASHBOARD_PAGE_URL);
     } catch {
       showToast.error('Invalid credentials. Please try again.');
