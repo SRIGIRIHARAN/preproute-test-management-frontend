@@ -7,7 +7,7 @@ import AppHeader from '@/common/components/AppHeader';
 import { SidebarContext } from '@/common/contexts/SidebarContext';
 import { logo } from '@/assets';
 import {
-  CREATE_TEST_PAGE_URL,
+  CREATE_TEST_CHAPTERWISE_URL,
   DASHBOARD_PAGE_URL,
 } from '@/constants/routes';
 
@@ -16,7 +16,7 @@ const SIDEBAR_OFFSET = 'md:ml-[200px]';
 
 const navItems = [
   { label: 'Dashboard', to: DASHBOARD_PAGE_URL, icon: LineChart },
-  { label: 'Test Creation', to: CREATE_TEST_PAGE_URL, icon: PenLine },
+  { label: 'Test Creation', to: CREATE_TEST_CHAPTERWISE_URL, icon: PenLine },
   { label: 'Test Tracking', to: DASHBOARD_PAGE_URL, icon: ClipboardList },
 ];
 
@@ -27,8 +27,8 @@ function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
     if (label === 'Dashboard') return location.pathname === DASHBOARD_PAGE_URL;
     if (label === 'Test Creation') {
       return (
-        location.pathname === CREATE_TEST_PAGE_URL ||
-        /^\/tests\/[^/]+\/edit$/.test(location.pathname)
+        /^\/tests\/create(\/[^/]+)?$/.test(location.pathname) ||
+        /^\/tests\/[^/]+\/edit(\/[^/]+)?$/.test(location.pathname)
       );
     }
     if (label === 'Test Tracking') {
@@ -76,7 +76,7 @@ export default function AppSidebar({ children }: AppSidebarProps) {
 
   return (
     <SidebarContext.Provider value={{ open: sidebarOpen, setOpen: setSidebarOpen }}>
-      <div className="min-h-svh bg-surface flex">
+      <div className="min-h-svh flex">
         {/* Desktop sidebar */}
         <aside
           className={cn(
